@@ -56,6 +56,22 @@ def find(a,n)
 end
 find(a, 1)
 
+puts ""
+puts "Array reverse"
+def reverse_array(x)
+	c = []
+	b = x.size  
+ 	n = 1
+ 	b.times do
+ 	c << x[(b-n)-b]
+ 	n+=1
+ end
+ puts c
+end
+a = ["sarah","susan","brian","max"]
+reverse_array(a)
+
+
 # b = 1
 # a = 0
 # def fibonacci(n)
