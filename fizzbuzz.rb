@@ -72,24 +72,11 @@ a = ["sarah","susan","brian","max"]
 reverse_array(a)
 
 
-# b = 1
-# a = 0
-# def fibonacci(n)
-# return if n > 100
-# b =+ 1
-# puts n
-# fibonacci(n+b)
-# end
+puts ""
+puts "fibonacci"
+def fibonacci(n)
+  return  n if n <= 1
+  (fibonacci(n-1) + fibonacci(n-2))
+end
 
-
-# 0
-# 1
-# 1
-# 2
-# 3
-# 5
-# 13
-# 18
-# 31
-# 49
-# 80
+puts fibonacci(10)
