@@ -15,7 +15,6 @@
 	end
 end
 puts ""
-
 puts "anagram"
 a = ["fish", "halah", "menu", "cannac", "parses", "anna"]
 a.map! do |t|
@@ -26,7 +25,6 @@ a.map! do |t|
 end
 puts a
 puts ""
-
 puts "simple recursion"
 def countdown(n)
 	if n == 0 
@@ -37,14 +35,9 @@ def countdown(n)
 	countdown(n-1)
 end
 countdown(5)
-
-
 puts ""
 puts "Array find"
 a = ["sarah","susan","brian","max"]
-
-
-
 def find(a,n)
 	puts "#{n} value in array"
 	 if
@@ -55,7 +48,6 @@ def find(a,n)
 	end
 end
 find(a, 1)
-
 puts ""
 puts "Array reverse"
 def reverse_array(x)
@@ -70,8 +62,6 @@ def reverse_array(x)
 end
 a = ["sarah","susan","brian","max"]
 reverse_array(a)
-
-
 puts ""
 puts "fibonacci"
 def fibonacci(n)
