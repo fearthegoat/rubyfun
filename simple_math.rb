@@ -8,7 +8,7 @@ class Mathematics
 	b.each do |n|
 		#average 
 		average = 0.0
-		n.times {a << rand(1..1000)}  	
+		n.times {a << rand(0..1000)}  	
 		total_number = a.inject(0.0) { |result, number| number + result}
 		puts "Total number #{total_number}"
 		average = total_number/a.size
