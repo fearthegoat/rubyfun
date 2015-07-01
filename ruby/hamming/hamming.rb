@@ -1,22 +1,18 @@
 class Hamming
 	def self.compute(x, y)
+	 raise ArgumentError, "Too many arguments" if x.length != y.length
 	a = []
 	b = []
 	c = []
 	sum = 0
 	a = x.split("") 
-	a.map! {|string| string.ord.to_i}
+	a.map! {|string| string.ord}
 	b = y.split("")
-	b.map! {|string| string.ord.to_i}
-	# puts "a #{a}"
-	# puts ""
-	# puts "b #{b}"
+	b.map! {|string| string.ord}
 	c = a.zip(b).map {|e, d| d - e}
-	# puts "c #{c}"
 	c.map! {|number| number == 0 ? 0 : 1} 
 	sum = c.inject(0){|t,result| t + result}
 	sum
-	# puts "sum #{sum}"
 	end
+	VERSION = 1
 end
-# Hamming.compute('AATG', 'AAA')
