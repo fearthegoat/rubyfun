@@ -1,4 +1,5 @@
 class Complement
+
 	def self.of_dna(array)
 		a = []
 		b = []
