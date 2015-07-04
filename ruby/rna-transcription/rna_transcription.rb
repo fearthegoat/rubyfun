@@ -1,27 +1,28 @@
 class Complement
+	
+	DNA_components = "C","G","T","A" #order is important		
+	RNA_components = "G","C","A","U" #order is important
 
 	def self.of_dna(array)
-		a = []
 		b = []
-		array.upcase!
+		a = []
 		array.each_char do |c|
-			a << c if /[G,C,A,T]/ =~ c
+			a << c if /#{DNA_components}/ =~ c
 		end
 		raise ArgumentError, "Not valid input" if array.size != a.size
-		b = a.join("").gsub(/[G,C,A,T]/, 'G' => 'C', 'C' => 'G','A' => 'U', 'T' => 'A')
+		b = a.join("").tr("#{DNA_components}", "#{RNA_components}")
 		b
 	end	
-
+	
 	def self.of_rna(array)
-		a = []
 		b = []
-		array.upcase!
+		a = []
 		array.each_char do |c|
-			a << c if /[G,C,A,U]/ =~ c
+			a << c if /#{RNA_components}/ =~ c
 		end
 		raise ArgumentError, "Not valid input" if array.size != a.size
-		b = a.join("").gsub(/[G,C,A,U]/, 'G' => 'C', 'C' => 'G','U' => 'A', 'A' => 'T')
+		b = a.join("").tr("#{RNA_components}", "#{DNA_components}")
 		b
-	end
-
+	end	
+	
 end
