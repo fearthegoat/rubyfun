@@ -56,7 +56,8 @@ class Card < Deck
 		@@deck.count - @count_cards_dealt_bottom - @count_cards_dealt_top
 	end
 
-1.times {Card.deal_bottom_card}
+#change as necessary to deal more/less cards.
+1.times {Card.deal_bottom_card} 
 1.times {Card.deal_top_card}
 1.times {Card.deal_bottom_card}
 
