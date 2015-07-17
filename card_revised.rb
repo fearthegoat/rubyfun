@@ -44,10 +44,11 @@ class Deck
 		dealt_card = @deck[-1]	
 		@deck -= [@deck[-1]]
 		@dealt_cards << dealt_card
+		# puts "#{calculate_card.round(2)}% chance your next card will increase your average value"
 	end
 
 	def sum_of_dealt_cards
-		sum = 0
+		sum = 0.0
 		dealt_cards.each { | t | sum += t.value }
 		sum
 	end
@@ -56,10 +57,23 @@ class Deck
 		sum_of_dealt_cards / dealt_cards.count
 	end
 
+	def calculate_card
+		aggregator = 0
+		@deck.each do |card|
+			card.value > average ? aggregator += 1 : nil
+		end
+		(aggregator.to_f / @deck.count.to_f) * 100
+	end
+
+	def report
+		puts "you have been dealt #{dealt_cards.count} cards"
+		puts "the average of your dealt cards is: #{average.round(2)}"
+		puts "There is a #{calculate_card.round(2)}% chance your next card will increase your average value"
+	end
+
 end
 
 a = Deck.new
-2.times {a.deal_top_card}
-2.times {a.deal_bottom_card}
-puts a.dealt_cards
-puts a.average
+14.times {a.deal_top_card}
+15.times {a.deal_bottom_card}
+a.report
