@@ -71,9 +71,13 @@ class Deck
 		puts "There is a #{calculate_card.round(2)}% chance your next card will increase your average value"
 	end
 
+	def shuffle
+		@deck.shuffle!
+	end
 end
 
 a = Deck.new
+a.shuffle
 14.times {a.deal_top_card}
 15.times {a.deal_bottom_card}
 a.report
