@@ -13,7 +13,7 @@ class Deck
 		 @@deck
 	end
 
-	def self.shuffle_deck
+	def shuffle_deck
 		Deck.new
 		@@deck.shuffle!
 	end
@@ -25,7 +25,7 @@ class Card < Deck
 	Deck.shuffle_deck #creates and shuffles deck
 
 	#setting initial values
-	@count_cards_dealt_top = 0
+  @count_cards_dealt_top = 0
 	@count_cards_dealt_bottom = 0
 	
 	#troubleshooting checks
@@ -33,8 +33,7 @@ class Card < Deck
 	puts "second bottom card #{@@deck[-2]}"
 	puts "top card #{@@deck[0]}"
 
-
-	def self.deal_top_card		
+	def deal_top_card		
 		unless cards_remaining <= 0
 			puts @@deck[@count_cards_dealt_top]
 			@count_cards_dealt_top += 1
@@ -43,7 +42,7 @@ class Card < Deck
 		end	
 	end
 
-	def self.deal_bottom_card
+	def deal_bottom_card
 		unless cards_remaining <= 0
 			puts @@deck[( @count_cards_dealt_bottom + 1) * -1] #needed since the last card in array is -1
 			@count_cards_dealt_bottom += 1
@@ -52,13 +51,13 @@ class Card < Deck
 		end	
 	end
 	
-	def self.cards_remaining
+	def cards_remaining
 		@@deck.count - @count_cards_dealt_bottom - @count_cards_dealt_top
 	end
 
 #change as necessary to deal more/less cards.
-1.times {Card.deal_bottom_card} 
-1.times {Card.deal_top_card}
-1.times {Card.deal_bottom_card}
+15.times {Card.deal_bottom_card} 
+10.times {Card.deal_top_card}
+30.times {Card.deal_bottom_card}
 
 end
