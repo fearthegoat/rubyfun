@@ -110,7 +110,7 @@ puts "...still calculating, please wait..."
 individual_results = []
 number_of_days_at_casino.times do
 	smart_player = Player.new
-	5000.times do
+	games_play_per_day.times do
 		smart_player.smart_bet
 	end
 	individual_results << smart_player.cash
