@@ -27,7 +27,6 @@ class RouletteWheel
 		else
 			color = 'red'
 		end
-
 		color == bet
 	end
 end
@@ -71,23 +70,42 @@ class Player
 	end
 end
 
-
-
 individual_results = []
-number_of_days_at_casino = 2000
+cash = 10000
+won_money_for_day = []
+games_play_per_day = 1000
+lost_money_for_day = []
+number_of_days_at_casino = 2000	
 number_of_days_at_casino.times do
 	player = Player.new
-	5000.times do
-		player.bet('red',5)
+	games_play_per_day.times do
+		player.bet('red',10)
 	end
 	individual_results << player.cash
 end
+individual_results.each do |result| 
+	if result >= cash 
+		won_money_for_day << result 
+	else
+		lost_money_for_day << result
+	end
+end
 sum = individual_results.inject(0.0) { | sum, result | sum + result}
-average = sum / number_of_days_at_casino
+normal_average = sum / number_of_days_at_casino
+percent_of_good_days = (won_money_for_day.size.to_f / number_of_days_at_casino) * 100
+total_won = (won_money_for_day.inject(0.0) { | total, result | total + result }) - cash * won_money_for_day.size
+total_lost = ((lost_money_for_day.inject(0.0) { | total, result | total + result }) - cash * lost_money_for_day.size)*-1
 
-puts "$#{average}"
-
-
+variance = (individual_results.inject(0.0) { | total, result | total + (normal_average - result)**2}) / individual_results.size
+puts "After #{number_of_days_at_casino} days at the casino and playing #{games_play_per_day} games per day, your results were:"
+puts ""
+puts "$#{normal_average} average ending cash balance. ($#{cash} starting)"
+puts "#{percent_of_good_days.round(1)} percent of time you beat the casino."
+puts "$#{Math.sqrt(variance).round(2)} standard deviation of the days."
+puts "$#{individual_results.max-cash} is the most you won in a day, $#{cash-individual_results.min} is the most you lost in a day. "
+puts "#{(total_won/total_lost).round(5)} ratio of won money to lost money"
+puts ""
+puts "...still calculating, please wait..."
 
 individual_results = []
 number_of_days_at_casino.times do
@@ -100,6 +118,8 @@ end
 
 sum = individual_results.inject(0.0) { | sum, result | sum + result}
 average = sum / number_of_days_at_casino
-
-puts "$#{average}"
+puts ""
+puts "Mark's Roulette Strategy:"
+puts "$#{average.round(2)} average ending cash balance. ($#{cash} starting)"
+puts "$#{(average-normal_average).round(2)} average loss compared to playing normally."
 
