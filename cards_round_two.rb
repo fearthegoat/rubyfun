@@ -105,7 +105,7 @@ end
 
 
 def build_player_hand_with_no_ace
-	if @player_1.total_value >= 17 ||	@player_1.total_value >= 13 && @dealer.total_value <= 6 || @player_1.total_value == 12 && @dealer.total_value <= 6 && @dealer.total_value >= 4 # The "Standard Strategy" for blackjack
+	if @player_1.total_value >= 17 ||	@player_1.total_value >= 13 && @dealer.total_value <= 6 || @player_1.total_value == 12 && @dealer.total_value <= 6 && @dealer.total_value >= 4
 		return
 	else 
 		@deck.deal_off_top_to(@player_1, 1)
@@ -130,6 +130,13 @@ def build_player_hand_with_ace
 	end
 end
 
+def pair_splitting
+	if @player_1.a_pair?
+	@player_1.split("") unless @player_1.total_value == 20 || @player_1.total_value == 18 && (@dealer.total_value == 7 || @dealer.total_value >=10) || @player_1.total_value <= 14 && @dealer.total_value >=8 || @player_1.total_value == 10 || @player_1.total_value ==8 && @dealer.total_value <=4 || @player_1.total_value <= 12 && @player_1.total_value >= 8 && @dealer.total_value == 7
+	end
+end
+
+
 if @player_1.ace_present? 
 	build_player_hand_with_ace	
 	else	
@@ -139,7 +146,7 @@ end
 while @dealer.total_value < 16 
 	@deck.deal_off_top_to(@dealer, 1)
 end
-
+#fix dealer ace handling
 
 puts "dealer: "
 puts "#{(@dealer).to_s}"

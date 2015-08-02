@@ -31,8 +31,9 @@ class StackOfCards
 
 	def sum
 		each do |t|
-			puts t.class
-			puts ""
+			t.each do |card|
+			puts card.class
+			end
 		end
 		sum
 		# inject(0) { |result, t| result + t.value }
@@ -139,12 +140,13 @@ class Deck < StackOfCards
 	end
 end
 
-class Hand
+class Hand < StackOfCards
 
-	def deal_cards	
-
+	def initialize
 	end
 
+	def draw_card
+	end
 
 end
 
@@ -153,4 +155,5 @@ dealer = StackOfCards.new
 rich_guy = StackOfCards.new
 a.shuffle
 a.deal_cards(rich_guy,dealer, 2)
+
 

@@ -15,7 +15,7 @@
 	end
 end
 puts ""
-puts "anagram"
+puts "palindrome"
 a = ["fish", "halah", "menu", "cannac", "parses", "anna"]
 a.map! do |t|
 	if
